@@ -3,6 +3,10 @@ name: my-framework-app
 access: default
 services:
   framework:
+    actions:
+      pre-deploy: # 在deploy之前运行
+        - run: export PATH=/usr/local/envs/py310/bin:$PATH && pip3 install -r requirements.txt -t .      # 要执行的系统命令，类似于一种钩子的形式
+          path: ./
     component: fc
     props:
       region: cn-hangzhou
